@@ -1,13 +1,11 @@
-import config
 import telebot
+import config
+import logging
+import controller.router
 
-bot = telebot.TeleBot(config.token)
+bot = config.BOT
 
-
-@bot.message_handler(content_types=["text"])
-def repeat_all_messages(message):
-    bot.send_message(message.chat.id, message.text)
-
+config.LOGGER.log(logging.INFO, 'start')
 
 if __name__ == '__main__':
     bot.infinity_polling()
