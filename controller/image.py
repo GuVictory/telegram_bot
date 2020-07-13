@@ -1,6 +1,7 @@
 import telebot
 import logging
 import config
+import os
 from PIL import Image, ImageFilter
 bot = config.BOT
 
@@ -17,6 +18,10 @@ def image_command(message):
     with open(file_info.file_path, 'wb') as new_file:
         new_file.write(downloaded_file)
         img = Image.open('./' + file_info.file_path)
+        # TODO Сделать модуль для работы с изображениями, чтобы создавать рандомные изменения
+        formated_img = img.convert('L')
+        formated_img.save(file_info.file_path, 'png')
 
     with open(file_info.file_path, 'rb') as new_file:
         bot.send_photo(message.chat.id, new_file)
+        os.remove(file_info.file_path)
