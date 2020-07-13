@@ -47,4 +47,5 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 
-./photos
+/photos
+/.vscode
